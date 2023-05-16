@@ -4,14 +4,19 @@ import java.util.List;
 
 public class Main2 {
     public static void main(String[] args) {
-        int val = 6;
-        int[] arrays = new int[]{1, 0, 3, 4, 5};
-        int[] arrays3 = new int[]{3, 3, 3};
-        String[] arrays2 = new String[]{"--X", "X++", "X++"};
-        System.out.println(Arrays.toString(reversArray(6)));
-        System.out.println(Arrays.toString(array(5)));
-        System.out.println(arrayList(5));
-        System.out.println(kidsWithCandies(arrays, 2));
+//        int val = 6;
+//        int[] arrays = new int[]{1, 0, 3, 4, 5};
+//        int[] arrays3 = new int[]{3, 3, 3};
+//        String[] arrays2 = new String[]{"--X", "X++", "X++"};
+//        System.out.println(Arrays.toString(reversArray(6)));
+//        System.out.println(Arrays.toString(array(5)));
+//        System.out.println(arrayList(5));
+//        System.out.println(kidsWithCandies(arrays, 2));
+        ListNode n3 = new ListNode(1, null);
+        ListNode n2 = new ListNode(0, n3);
+        ListNode n1 = new ListNode(1, n2);
+
+        System.out.println(getDecimalValue(n1));
     }
 
     public static int[] runningSum(int[] nums) {
@@ -181,7 +186,7 @@ public class Main2 {
     }
 
 
-    public class ListNode {
+    public static class ListNode {
         int val;
         ListNode next;
 
@@ -219,6 +224,51 @@ public class Main2 {
             curr.next = list2;
 
         return mergedList.next;
-}
+    }
+    public static int getDecimalValue(ListNode head) {
+        int value = 0;
+        ListNode curr = head;
+        int[] initialArray = new int[30];
+        int idx = 0;
+        while (curr != null) {
+            initialArray[idx] = curr.val;
+            if (curr.next != null) {
+                idx++;
+            }
+            curr = curr.next;
+        }
+        int[] array = new int[idx + 1];
+        System.arraycopy(initialArray, 0, array, 0, idx + 1);
+        int result = 0;
+        for (int i = idx; i >= 0; i--) {
+            result += (array[i] * Math.pow(2, array.length - i - 1));
+        }
+        return result;
+    }
+    public static ListNode middleNode(ListNode head) {
+        int counter = 0;
+        for(ListNode i = head; i != null; i = i.next){
+            counter ++;
+        }
+        int middle = (int) Math.ceil(counter/2);
+        for(ListNode j = head; j != null; j = j.next){
+            if(middle == 0){
+                return j;
+            }
+            middle--;
+        }
+        return null;
+    }
+    public ListNode reverseList(ListNode head) {
+        ListNode currNode = head;
+        ListNode prevNode = null;
 
+        while(currNode != null){
+            ListNode nextNode = currNode.next;
+            currNode.next = prevNode;
+            prevNode = currNode;
+            currNode = nextNode;
+        }
+        return prevNode;
+    }
 }
