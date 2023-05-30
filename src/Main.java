@@ -14,7 +14,7 @@ public class Main {
     }
 
     //на взод массив чисел если число делится на 3 то в консоль нужно записать fizz если число делится на 5 то нужно написать buzz
-    //если число делится и на 3 и на 5 то в консоль нужно написать fizz buzz если число не делится на эти число то пошёл ты нахуй уебан
+    //если число делится и на 3 и на 5 то в консоль нужно написать fizz buzz если число не делится на эти число то error
     public static void fizzBuzz(int[] chisla) {
         for (int i = 0; i < chisla.length; i++) {
             if (chisla[i] % 3 == 0 && chisla[i] % 5 == 0) {
@@ -27,7 +27,7 @@ public class Main {
                 System.out.println("buzz");
             }
             else {
-                System.out.println("пошёл ты нахуй уебан");
+                System.out.println("error");
             }
         }
 

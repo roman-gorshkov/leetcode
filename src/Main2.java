@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.math.BigInteger;
+import java.util.*;
 
 public class Main2 {
     public static void main(String[] args) {
@@ -12,11 +11,18 @@ public class Main2 {
 //        System.out.println(Arrays.toString(array(5)));
 //        System.out.println(arrayList(5));
 //        System.out.println(kidsWithCandies(arrays, 2));
-        ListNode n3 = new ListNode(1, null);
-        ListNode n2 = new ListNode(0, n3);
-        ListNode n1 = new ListNode(1, n2);
+//        ListNode n3 = new ListNode(1, null);
+//        ListNode n2 = new ListNode(0, n3);
+//        ListNode n1 = new ListNode(1, n2);
+//
+//        System.out.println(getDecimalValue(n1));
 
-        System.out.println(getDecimalValue(n1));
+        String a = "10100000100100110110010000010101111011011001101110111111111101000000101111001110001111100001101";
+        String b = "110101001011101110001111100110001010100001101011101010000011011011001011101111001100000011011110011";
+        System.out.println(addBinary(a, b));
+
+
+        //System.out.println(removeDuplicates(hui));
     }
 
     public static int[] runningSum(int[] nums) {
@@ -131,19 +137,23 @@ public class Main2 {
         return counter;
     }
 
-    public int removeDuplicates(int[] nums) {
-        int counter = 0;
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = nums.length - 1; j >= 0; j--) {
-                if (nums[i] == nums[j]) {
-                    nums[i] = nums[j];
-                    counter++;
-                } else {
-                    nums[counter] = nums[i];
-                }
+    public static int removeDuplicates(int[] nums) {
+        int deleted = 0;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == -1) {
+                return i;
+            }
+
+            if (nums[i] == nums[i-1]) {
+                System.arraycopy(nums, i + 1, nums, i, nums.length - i - 1);
+                deleted++;
+                nums[nums.length - deleted] = -1;
+                i--;
             }
         }
-        return counter;
+
+        return nums.length;
     }
 
     public static int[] reversArray(int val) {
@@ -299,4 +309,55 @@ public class Main2 {
 
         return digits;
     }
+    public int mySqrt(int x) {
+        int y = (int) Math.sqrt(x);
+        Math.round(y);
+        return y;
+    }
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> numsSet = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            boolean res = numsSet.add(nums[i]);
+            if (!res) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j <= Math.min(i + k, nums.length - 1); j++) {
+                if(nums[i] == nums[j]){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public static String addBinary(String a, String b) {
+        BigInteger first = new BigInteger(a, 2);
+        BigInteger second = new BigInteger(b, 2);
+        BigInteger sum = first.add(second);
+
+        return sum.toString(2);
+    }
+    public List<String> fizzBuzz(int n) {
+        ArrayList<String> answer = new ArrayList<>(n);
+        for (int i = 1; i <= n; i++) {
+            if (i % 3 == 0  && i % 5 == 0){
+                answer.add("FizzBuzz");
+            }
+            else if (i % 3 == 0) {
+                answer.add("Fizz");
+            }
+            else if (i % 5 == 0) {
+                answer.add("Buzz");
+            }
+            else {
+                answer.add(String.valueOf(i));
+            }
+        }
+        return answer;
+    }
+
 }
