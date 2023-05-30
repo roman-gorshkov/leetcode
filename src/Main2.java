@@ -271,4 +271,32 @@ public class Main2 {
         }
         return prevNode;
     }
+    public int mostWordsFound(String[] sentences) {
+        int counter = 0;
+        for (int i = 0; i < sentences.length; i++) {
+            String[] words = sentences[i].split(" ");
+            if(words.length > counter){
+                counter = words.length;
+            }
+        }
+        return counter;
+    }
+    public int[] plusOne(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--){
+            if(digits[i] != 9){
+                digits[i] = digits[i] + 1;
+            }
+            else {
+                digits[i] = 0;
+            }
+        }
+
+        if (digits[0] == 0) {
+            int[] soloValue = new int[digits.length + 1];
+            soloValue[0] = 1;
+            return soloValue;
+        }
+
+        return digits;
+    }
 }
