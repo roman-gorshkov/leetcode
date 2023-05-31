@@ -314,16 +314,6 @@ public class Main2 {
         Math.round(y);
         return y;
     }
-    public boolean containsDuplicate(int[] nums) {
-        Set<Integer> numsSet = new HashSet<>();
-        for (int i = 0; i < nums.length; i++) {
-            boolean res = numsSet.add(nums[i]);
-            if (!res) {
-                return true;
-            }
-        }
-        return false;
-    }
     public boolean containsNearbyDuplicate(int[] nums, int k) {
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j <= Math.min(i + k, nums.length - 1); j++) {
