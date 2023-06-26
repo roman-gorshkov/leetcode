@@ -1,6 +1,5 @@
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+
+import java.util.*;
 
 public class MyHashSet {
     private Integer[][] buckets;
@@ -90,9 +89,5 @@ public class MyHashSet {
         }
 
         return intersectionRes;
-    }
-    public boolean isHappy(int n) {
-        Set<Integer> set = new HashSet<>();
-
     }
 }
